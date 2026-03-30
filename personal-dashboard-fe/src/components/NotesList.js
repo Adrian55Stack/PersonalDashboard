@@ -1,7 +1,6 @@
-// src/components/NotesList.jsx
-
 import { useEffect, useState } from "react";
 import { getNotes } from "../services/api";
+import "./list.css";
 
 function NotesList() {
   const [notes, setNotes] = useState([]);
@@ -14,7 +13,7 @@ function NotesList() {
     <div>
       <h2>Notes</h2>
       {notes.map((note) => (
-        <div key={note.id} style={styles.card}>
+        <div key={note.id} className="card">
           <h4>{note.title}</h4>
           <p>{note.content}</p>
         </div>
@@ -22,14 +21,5 @@ function NotesList() {
     </div>
   );
 }
-
-const styles = {
-  card: {
-    border: "1px solid #ccc",
-    padding: "10px",
-    marginBottom: "10px",
-    borderRadius: "8px",
-  },
-};
 
 export default NotesList;

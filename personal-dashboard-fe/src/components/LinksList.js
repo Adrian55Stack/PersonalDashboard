@@ -1,7 +1,6 @@
-// src/components/LinksList.jsx
-
 import { useEffect, useState } from "react";
 import { getLinks } from "../services/api";
+import "./list.css";
 
 function LinksList() {
   const [links, setLinks] = useState([]);
@@ -14,7 +13,7 @@ function LinksList() {
     <div>
       <h2>Useful Links</h2>
       {links.map((link) => (
-        <div key={link.id} style={styles.card}>
+        <div key={link.id} className="card">
           <a href={link.url} target="_blank" rel="noreferrer">
             {link.url}
           </a>
@@ -24,14 +23,5 @@ function LinksList() {
     </div>
   );
 }
-
-const styles = {
-  card: {
-    border: "1px solid #ccc",
-    padding: "10px",
-    marginBottom: "10px",
-    borderRadius: "8px",
-  },
-};
 
 export default LinksList;
