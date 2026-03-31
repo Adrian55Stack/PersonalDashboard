@@ -11,6 +11,20 @@ services:
       - "3307:3306"
     volumes:
       - db-data:/var/lib/mysql
-
+  backend:
+    build: ./personal-dashboard-be
+    container_name: backend-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/personal-dashboard
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
 volumes:
   db-data:
+
+  # docker-compose up -d            start everything
+  # docker-compose down             stop everything
+  # docker-compose up -d --build    rebuild after code change
