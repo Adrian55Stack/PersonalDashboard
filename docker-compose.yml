@@ -22,9 +22,18 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/personal-dashboard
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+  frontend:
+    build: ./personal-dashboard-fe
+    container_name: frontend-app
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
 volumes:
   db-data:
 
   # docker-compose up -d            start everything
   # docker-compose down             stop everything
-  # docker-compose up -d --build    rebuild after code change
+  # docker-compose up -d --build backend   rebuild after code change
+  # docker-compose up -d --build frontend
+  # docker-compose up -d --build db
