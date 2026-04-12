@@ -1,0 +1,25 @@
+name: Backend CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build JAR
+        run: mvn -f personal-dashboard-be/pom.xml clean package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t dashboard-be ./personal-dashboard-be
